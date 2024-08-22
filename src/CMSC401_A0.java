@@ -1,3 +1,5 @@
+// CMSC 401 08/20/2024
+// Carter Struck
 import java.util.Scanner;
 
 public class CMSC401_A0 {
