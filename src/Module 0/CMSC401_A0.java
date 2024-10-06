@@ -22,6 +22,8 @@ public class CMSC401_A0 {
             // needs - 1 adjustment
             int product = integerArray[firstIndex - 1] * integerArray[secondIndex - 1];
             System.out.println(product);
+
+            scanner.close();
         }
     }
 }
