@@ -4,7 +4,13 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-
+        {
+            "type": "java",
+            "name": "CMSC401_A3",
+            "request": "launch",
+            "mainClass": "Module_3.CMSC401_A3",
+            "projectName": "Algorithms-DataStructures_4c98df7"
+        },
         {
             "type": "java",
             "name": "CMSC401_A2",
@@ -17,7 +23,9 @@
             "name": "Current File",
             "request": "launch",
             "mainClass": "${file}",
-            "args": ["6 4 81 -12 100 -40 0 24"]
+            "args": [
+                "6 4 81 -12 100 -40 0 24"
+            ]
         }
     ]
 }
