@@ -1,9 +1,13 @@
 
+/*
+ * Carter Struck
+ */
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class CMSC401_A4 {
 
-    public static int minCutCost(int length, int[] cuts) {
+    public static int minCutCost(int length, int[] cuts, int L) {
         int n = cuts.length;
         int[] positions = new int[n + 2];
         positions[0] = 0;
@@ -11,27 +15,44 @@ public class CMSC401_A4 {
         System.arraycopy(cuts, 0, positions, 1, n);
         Arrays.sort(positions);
 
-        int[][] dp = new int[n + 2][n + 2];
+        int[][] rodDPArr = new int[n + 2][n + 2];
 
         for (int l = 2; l < n + 2; l++) {
             for (int i = 0; i + l < n + 2; i++) {
                 int j = i + l;
-                dp[i][j] = Integer.MAX_VALUE;
+                rodDPArr[i][j] = Integer.MAX_VALUE;
                 for (int k = i + 1; k < j; k++) {
-                    dp[i][j] = Math.min(dp[i][j], dp[i][k] + dp[k][j] + (positions[j] - positions[i]));
+                    int segmentCost = rodPrice(positions[j] - positions[i], L);
+                    rodDPArr[i][j] = Math.min(rodDPArr[i][j],
+                            rodDPArr[i][k] + rodDPArr[k][j] + segmentCost);
                 }
             }
         }
 
-        return dp[0][n + 1];
+        return rodDPArr[0][n + 1];
+    }
+
+    public static int rodPrice(int rodLength, int priceL) {
+        return (rodLength + priceL - 1) / priceL;
     }
 
     public static void main(String[] args) {
 
-        int rodLength = 10;
-        int[] cuts = { 3, 5, 6 };
+        Scanner scanner = new Scanner(System.in);
 
-        int minCost = minCutCost(rodLength, cuts);
+        int rodLength = scanner.nextInt();
+        int L = scanner.nextInt();
+
+        int markingPoints = scanner.nextInt();
+
+        int[] cuts = new int[markingPoints];
+
+        for (int i = 0; i < markingPoints; i++) {
+            cuts[i] = scanner.nextInt();
+        }
+        System.out.println(cuts.length);
+
+        int minCost = minCutCost(rodLength, cuts, L);
         System.out.println(minCost);
     }
 }
